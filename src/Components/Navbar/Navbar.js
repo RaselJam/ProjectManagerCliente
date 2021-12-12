@@ -1,29 +1,30 @@
 import React from 'react'
-import * as svgs from '../shared/svgs.js'
+import * as svgs from '../../assets/svgs.js'
+import css from '../../index.module.css'
 
 
-function Navbar({user}) {
+function Navbar({ user }) {
   return (
-    <div className="app-header">
-      <div className="app-header-left">
-        <span className="app-icon"></span>
-        <p className="app-name">Project Management</p>
-        <div className="search-wrapper">
-          <input className="search-input" type="text" placeholder="Search" />
-          {svgs.serach}
+    <div className={css.appHeader}>
+      <div className={css.appHeaderLeft}>
+        <span className={css.appIcon}></span>
+        <p className={css.appName}>Project Management</p>
+        <div className={css.searchWrapper}>
+          <input className={css.searchInput} type="text" placeholder="Search" />
+          {svgs.serach()}
         </div>
       </div>
-      <div className="app-header-right">
-        <button className="mode-switch" title="Switch Theme">
-          {svgs.moon}
+      <div className={css.appHeaderRight}>
+        <button className={css.modeSwitch} title="Switch Theme">
+          {svgs.moon('moon')}
         </button>
-        <button className="add-btn" title="Add New Project">
-          {svgs.add}
+        <button className={css.addBtn} title="Add New Project">
+          {svgs.add(css.btnIcon)}
         </button>
-        <button className="notification-btn">
-        {svgs.notBtn}
+        <button className={css.notificationBtn}>
+          {svgs.notBtn()}
         </button>
-        <button className="profile-btn">
+        <button className={css.profileBtn}>
           <img src={user.img} />
           <a href="./login.html">login</a> <span>{user.userName}</span>
         </button>

@@ -1,11 +1,10 @@
 import React from 'react'
 import { Link} from 'react-router-dom'
+import css from '../../index.module.css'
 
 function SingleNavLink({ to, active, svg }) {
-    const classes = ["app-sidebar-link"]
-    if (active) classes.push('active')
-    return (
-      <Link to={to}  className={classes.join(' ')}>
+      return (
+      <Link to={to}  className={[css.appSidebarLink, active? css.active:''].join(' ')}>
             {svg}
       </Link>
     )

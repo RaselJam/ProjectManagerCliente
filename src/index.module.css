@@ -65,7 +65,8 @@ a {
   cursor: pointer;
 }
 
-.app-container {
+.appContainer {
+  margin: 0 auto;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -74,47 +75,49 @@ a {
   transition: 0.2s;
   max-width: 1800px;
 }
-.app-container button,
-.app-container input,
-.app-container optgroup,
-.app-container select,
-.app-container textarea {
+.appContainer button,
+.appContainer input,
+.appContainer optgroup,
+.appContainer select,
+.appContainer textarea {
   font-family: "DM Sans", sans-serif;
 }
-.app-content {
+.appContent {
   display: flex;
   height: 100%;
   overflow: hidden;
-  padding: 16px 24px 24px 0;
+  padding: 16px 24px 24px 10px;
+  gap: 1rem;
 }
-.app-header {
+.appHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 16px 24px;
+  padding: 26px 29px;
   position: relative;
+
 }
-.app-header-left,
-.app-header-right {
+.appHeaderLeft,
+.appHeaderRight {
   display: flex;
   align-items: center;
 }
-.app-header-left {
+.appHeaderLeft {
   flex-grow: 1;
 }
-.app-header-right button {
+.appHeaderRight button {
   margin-left: 10px;
 }
-.app-icon {
+.appIcon {
   width: 26px;
   height: 2px;
   border-radius: 4px;
   background-color: var(--main-color);
   position: relative;
 }
-.app-icon:before,
-.app-icon:after {
+.appIcon:before,
+.appIcon:after {
   content: "";
   position: absolute;
   width: 12px;
@@ -124,13 +127,13 @@ a {
   left: 50%;
   transform: translatex(-50%);
 }
-.app-icon:before {
+.appIcon:before {
   top: -6px;
 }
-.app-icon:after {
+.appIcon:after {
   bottom: -6px;
 }
-.app-name {
+.appName {
   color: var(--main-color);
   margin: 0;
   font-size: 20px;
@@ -139,7 +142,7 @@ a {
   margin: 0 32px;
 }
 
-.mode-switch {
+.modeSwitch {
   background-color: transparent;
   border: none;
   padding: 0;
@@ -149,7 +152,7 @@ a {
   align-items: center;
 }
 
-.search-wrapper {
+.searchWrapper {
   border-radius: 20px;
   background-color: var(--search-area-bg);
   padding-right: 12px;
@@ -163,11 +166,11 @@ a {
   box-shadow: 0 2px 6px 0 rgba(136, 148, 171, 0.2), 0 24px 20px -24px rgba(71, 82, 107, 0.1);
   overflow: hidden;
 }
-.dark .search-wrapper {
+.dark .searchWrapper {
   box-shadow: none;
 }
 
-.search-input {
+.searchInput {
   border: none;
   flex: 1;
   outline: none;
@@ -177,12 +180,12 @@ a {
   background-color: var(--search-area-bg);
   color: var(--main-color);
 }
-.search-input:placeholder {
+.searchInput:placeholder {
   color: var(--main-color);
   opacity: 0.6;
 }
 
-.add-btn {
+.addBtn {
   color: #fff;
   background-color: var(--button-bg);
   padding: 0;
@@ -195,7 +198,7 @@ a {
   justify-content: center;
 }
 
-.notification-btn {
+.notificationBtn {
   color: var(--main-color);
   padding: 0;
   border: 0;
@@ -206,7 +209,7 @@ a {
   align-items: center;
 }
 
-.profile-btn {
+.profileBtn {
   padding: 0;
   border: 0;
   background-color: transparent;
@@ -215,7 +218,7 @@ a {
   padding-left: 12px;
   border-left: 2px solid #ddd;
 }
-.profile-btn img {
+.profileBtn img {
   width: 32px;
   height: 32px;
   -o-object-fit: cover;
@@ -223,25 +226,25 @@ a {
   border-radius: 50%;
   margin-right: 4px;
 }
-.profile-btn span {
+.profileBtn span {
   color: var(--main-color);
   font-size: 16px;
   line-height: 24px;
   font-weight: 700;
 }
 
-.page-content  {
+.pageContent  {
   flex: 1;
   width: 100%;
 }
 
-.app-sidebar {
+.appSidebar {
   padding: 40px 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.app-sidebar-link {
+.appSidebarLink {
   color: var(--main-color);
   color: var(--link-color);
   margin: 16px 0;
@@ -254,16 +257,16 @@ a {
   justify-content: center;
   align-items: center;
 }
-.app-sidebar-link:hover {
+.appSidebarLink:hover {
   background-color: var(--link-color-hover);
   color: var(--link-color-active);
 }
-.app-sidebar-link.active {
+.appSidebarLink.active {
   background-color: var(--link-color-active-bg);
   color: var(--link-color-active);
 }
 
-.projects-section {
+.projectsSection {
   flex: 2;
   background-color: var(--projects-section);
   border-radius: 32px;
@@ -273,20 +276,20 @@ a {
   display: flex;
   flex-direction: column;
 }
-.projects-section-line {
+.projectsSectionLine {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 32px;
 }
-.projects-section-header {
+.projectsSectionHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
   color: var(--main-color);
 }
-.projects-section-header p {
+.projectsSectionHeader p {
   font-size: 24px;
   line-height: 32px;
   font-weight: 700;
@@ -294,20 +297,20 @@ a {
   margin: 0;
   color: var(--main-color);
 }
-.projects-section-header .time {
+.projectsSectionHeader .time {
   font-size: 20px;
 }
 
-.projects-status {
+.projectsStatus {
   display: flex;
 }
 
-.item-status {
+.itemStatus {
   display: flex;
   flex-direction: column;
   margin-right: 16px;
 }
-.item-status:not(:last-child) .status-type:after {
+.itemStatus:not(:last-child) .statusType:after {
   content: "";
   position: absolute;
   right: 8px;
@@ -319,25 +322,25 @@ a {
   border: 1px solid var(--secondary-color);
 }
 
-.status-number {
+.statusNumber {
   font-size: 24px;
   line-height: 32px;
   font-weight: 700;
   color: var(--main-color);
 }
 
-.status-type {
+.statusType {
   position: relative;
   padding-right: 24px;
   color: var(--secondary-color);
 }
 
-.view-actions {
+.viewActions {
   display: flex;
   align-items: center;
 }
 
-.view-btn {
+.viewBtn {
   width: 36px;
   height: 36px;
   display: flex;
@@ -351,108 +354,108 @@ a {
   margin-left: 8px;
   transition: 0.2s;
 }
-.view-btn.active {
+.viewBtn.active {
   background-color: var(--link-color-active-bg);
   color: var(--link-color-active);
 }
-.view-btn:not(.active):hover {
+.viewBtn:not(.active):hover {
   background-color: var(--link-color-hover);
   color: var(--link-color-active);
 }
 
-.project-boxes {
+.projectBoxes {
   margin: 0 -8px;
   overflow-y: auto;
 }
-.project-boxes.jsGridView {
+.projectBoxes.jsGridView {
   display: flex;
   flex-wrap: wrap;
 }
-.project-boxes.jsGridView .project-box-wrapper {
+.projectBoxes.jsGridView .projectBoxWrapper {
   width: 33.3%;
 }
-.project-boxes.jsListView .project-box {
+.projectBoxes.jsListView .projectBox {
   display: flex;
   border-radius: 10px;
   position: relative;
 }
-.project-boxes.jsListView .project-box > * {
+.projectBoxes.jsListView .projectBox > * {
   margin-right: 24px;
 }
-.project-boxes.jsListView .more-wrapper {
+.projectBoxes.jsListView .moreWrapper {
   position: absolute;
   right: 16px;
   top: 16px;
 }
-.project-boxes.jsListView .project-box-content-header {
+.projectBoxes.jsListView .projectBoxContentHeader {
   order: 1;
   max-width: 120px;
 }
-.project-boxes.jsListView .project-box-header {
+.projectBoxes.jsListView .projectBoxHeader {
   order: 2;
 }
-.project-boxes.jsListView .project-box-footer {
+.projectBoxes.jsListView .projectBoxFooter {
   order: 3;
   padding-top: 0;
   flex-direction: column;
   justify-content: flex-start;
 }
-.project-boxes.jsListView .project-box-footer:after {
+.projectBoxes.jsListView .projectBoxFooter:after {
   display: none;
 }
 .project-boxes.jsListView .participants {
   margin-bottom: 8px;
 }
-.project-boxes.jsListView .project-box-content-header p {
+.projectBoxes.jsListView .projectBoxContentHeader p {
   text-align: left;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.project-boxes.jsListView .project-box-header > span {
+.projectBoxes.jsListView .projectBoxHeader > span {
   position: absolute;
   bottom: 16px;
   left: 16px;
   font-size: 12px;
 }
-.project-boxes.jsListView .box-progress-wrapper {
+.projectBoxes.jsListView .boxProgressWrapper {
   order: 3;
   flex: 1;
 }
 
-.project-box {
+.projectBox {
   --main-color-card: #dbf6fd;
   border-radius: 30px;
   padding: 16px;
   background-color: var(--main-color-card);
   height: 620px;
 }
-.project-box-header {
+.projectBoxHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 16px;
   color: var(--main-color);
 }
-.project-box-header span {
+.projectBoxHeader span {
   color: #4a4a4a;
   opacity: 0.7;
   font-size: 14px;
   line-height: 16px;
 }
-.project-box-content-header {
+.projectBoxContentHeader {
   text-align: center;
   margin-bottom: 16px;
 }
-.project-box-content-header p {
+.projectBoxContentHeader p {
   margin: 0;
 }
-.project-box-wrapper {
+.projectBoxWrapper {
   padding: 8px;
   transition: 0.2s;
 }
 
-.project-btn-more {
+.projectBtnMore {
   padding: 0;
   height: 14px;
   width: 24px;
@@ -477,29 +480,29 @@ a {
   &:after { bottom: 0; }*/
 }
 
-.more-wrapper {
+.moreWrapper {
   position: relative;
 }
 
-.box-content-header {
+.boxContentHeader {
   font-size: 16px;
   line-height: 24px;
   font-weight: 700;
   opacity: 0.7;
 }
 
-.box-content-subheader {
+.boxContentSubheader {
   font-size: 14px;
   line-height: 24px;
   opacity: 0.7;
 }
 
-.box-progress {
+.boxProgress {
   display: block;
   height: 4px;
   border-radius: 6px;
 }
-.box-progress-bar {
+.boxProgressBar {
   width: 100%;
   height: 4px;
   border-radius: 6px;
@@ -507,13 +510,13 @@ a {
   background-color: #fff;
   margin: 8px 0;
 }
-.box-progress-header {
+.boxProgressHeader {
   font-size: 14px;
   font-weight: 700;
   line-height: 16px;
   margin: 0;
 }
-.box-progress-percentage {
+.boxProgressPercentage {
   text-align: right;
   margin: 0;
   font-size: 14px;
@@ -521,13 +524,13 @@ a {
   line-height: 16px;
 }
 
-.project-box-footer {
+.projectBoxFooter {
   display: flex;
   justify-content: space-between;
   padding-top: 16px;
   position: relative;
 }
-.project-box-footer:after {
+.projectBoxFooter:after {
   content: "";
   position: absolute;
   background-color: rgba(255, 255, 255, 0.6);
@@ -553,7 +556,7 @@ a {
   margin-left: -8px;
 }
 
-.add-participant {
+.addParticipant {
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -566,7 +569,7 @@ a {
   padding: 0;
 }
 
-.days-left {
+.daysLeft {
   background-color: rgba(255, 255, 255, 0.6);
   font-size: 12px;
   border-radius: 20px;
@@ -575,11 +578,11 @@ a {
   font-weight: 700;
 }
 
-.mode-switch.active .moon {
+.modeSwitch.active .moon {
   fill: var(--main-color);
 }
 
-.messages-btn {
+.messagesBtn {
   border-radius: 4px 0 0 4px;
   position: absolute;
   right: 0;
@@ -595,26 +598,26 @@ a {
 }
 
 @media screen and (max-width: 980px) {
-  .project-boxes.jsGridView .project-box-wrapper {
+  .projectBoxes.jsGridView .projectBoxWrapper {
     width: 50%;
   }
 
-  .status-number,
-  .status-type {
+  .statusNumber,
+  .statusType {
     font-size: 14px;
   }
 
-  .status-type:after {
+  .statusType:after {
     width: 4px;
     height: 4px;
   }
 
-  .item-status {
+  .itemStatus {
     margin-right: 0;
   }
 }
 @media screen and (max-width: 880px) {
-  .messages-section {
+  .messagesSection {
     transform: translateX(100%);
     position: absolute;
     opacity: 0;
@@ -623,143 +626,143 @@ a {
     height: 100%;
     width: 100%;
   }
-  .messages-section .messages-close {
+  .messagesSection .messagesClose {
     display: block;
   }
 
-  .messages-btn {
+  .messagesBtn {
     display: flex;
   }
 }
 @media screen and (max-width: 720px) {
-  .app-name,
-  .profile-btn span {
+  .appName,
+  .profileBtn span {
     display: none;
   }
 
-  .add-btn,
-  .notification-btn,
-  .mode-switch {
+  .addBtn,
+  .notificationBtn,
+  .modeSwitch {
     width: 20px;
     height: 20px;
   }
-  .add-btn svg,
-  .notification-btn svg,
-  .mode-switch svg {
+  .addBtn svg,
+  .notificationBtn svg,
+  .modeSwitch svg {
     width: 16px;
     height: 16px;
   }
 
-  .app-header-right button {
+  .appHeaderRight button {
     margin-left: 4px;
   }
 }
 @media screen and (max-width: 520px) {
-  .projects-section {
+  .projectsSection {
     overflow: auto;
   }
 
-  .project-boxes {
+  .projectBoxes {
     overflow-y: visible;
   }
 
-  .app-sidebar,
-  .app-icon {
+  .appSidebar,
+  .appIcon {
     display: none;
   }
 
-  .app-content {
+  .appContent {
     padding: 16px 12px 24px 12px;
   }
 
-  .status-number,
-  .status-type {
+  .statusNumber,
+  .statusType {
     font-size: 10px;
   }
 
-  .view-btn {
+  .viewBtn {
     width: 24px;
     height: 24px;
   }
 
-  .app-header {
+  .appHeader {
     padding: 16px 10px;
   }
 
-  .search-input {
+  .searchInput {
     max-width: 120px;
+    border: none;
+    font-size: 14px;
   }
 
-  .project-boxes.jsGridView .project-box-wrapper {
+  .projectBoxes.jsGridView .projectBoxWrapper {
     width: 100%;
   }
 
-  .projects-section {
+  .projectsSection {
     padding: 24px 16px 0 16px;
   }
 
-  .profile-btn img {
+  .profileBtn img {
     width: 24px;
     height: 24px;
   }
 
-  .app-header {
+  .appHeader {
     padding: 10px;
   }
 
-  .projects-section-header p,
-  .projects-section-header .time {
+  .projectsSectionHeader p,
+  .projectsSectionHeader .time {
     font-size: 18px;
   }
 
-  .status-type {
+  .statusType {
     padding-right: 4px;
   }
-  .status-type:after {
+  .statusType:after {
     display: none;
   }
 
-  .search-input {
-    font-size: 14px;
-  }
 
-  .messages-btn {
+
+  .messagesBtn {
     top: 48px;
   }
 
-  .box-content-header {
+  .boxContentHeader {
     font-size: 12px;
     line-height: 16px;
   }
 
-  .box-content-subheader {
+  .boxContentSubheader {
     font-size: 12px;
     line-height: 16px;
   }
 
-  .project-boxes.jsListView .project-box-header > span {
+  .projectBoxes.jsListView .projectBoxHeader > span {
     font-size: 10px;
   }
 
-  .box-progress-header {
+  .boxProgressHeader {
     font-size: 12px;
   }
 
-  .box-progress-percentage {
+  .boxProgressPercentage {
     font-size: 10px;
   }
 
-  .days-left {
+  .daysLeft {
     font-size: 8px;
     padding: 6px 6px;
     text-align: center;
   }
 
-  .project-boxes.jsListView .project-box > * {
+  .projectBoxes.jsListView .projectBox > * {
     margin-right: 10px;
   }
 
-  .project-boxes.jsListView .more-wrapper {
+  .projectBoxes.jsListView .moreWrapper {
     right: 2px;
     top: 10px;
   }

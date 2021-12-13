@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 export const useField = ({ type, callback }) => {
-  const [value, setValue] = useState('')
+  const value = useRef()
   const onChange = (e) => {
-    if (type === 'checkbox') setValue(e.target.checked)
-    else setValue(e.target.value)
+    if (type === 'checkbox') value.curent=e.target.checked
+    else value.curent=e.target.value
   }
   useEffect(() => {
     callback()

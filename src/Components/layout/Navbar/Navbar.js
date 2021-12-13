@@ -1,6 +1,6 @@
 import React from 'react'
-import * as svgs from '../../assets/svgs.js'
-import css from '../../index.module.css'
+import * as svgs from '../../../assets/svgs.js'
+import css from '../../../index.module.css'
 
 
 function Navbar({ user }) {

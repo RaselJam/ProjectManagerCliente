@@ -18,6 +18,11 @@ export const getManagerProjects = async () => {
   return result;
 }
 
+export const getrelatedProjects = async () => {
+  console.log("Calling API on Get:profile/r")
+  const result = await axios.get('projects/user-projects-as-manager')
+  return result;
+}
 export const getProjectById = async ({ projectId }) => {
   console.log("Calling API on Get:projects/:id   with id: ", projectId)
 

@@ -72,7 +72,7 @@ export const removeTask = async ({ projectId, ticketId, taskId }) => {
 
 export const getTicketById = async ({ ticketId, projectId }) => {
   console.log("Calling API on GET:profile/tickets/:id  projectId:", projectId, "tikcetId : ", ticketId)
-  const result = await axios.get(`profile/tickets/${ticketId}`, { projectId})
+  const result = await axios.get(`profile/tickets/${ticketId}`, { projectId })
   return result;
 }
 
@@ -80,6 +80,15 @@ export const getTicketById = async ({ ticketId, projectId }) => {
 
 export const getCommentsOfTicket = async ({ ticketId, projectId }) => {
   console.log("Calling API on GET:profile/tickets/:id/comments  projectId:", projectId, "tikcetId : ", ticketId)
-  const result = await axios.get(`profile/tickets/${ticketId}/comments`, { projectId})
+  const result = await axios.get(`profile/tickets/${ticketId}/comments`, { projectId })
   return result;
+}
+
+export const postCommentOnTicket = async ({ tikectId, projectId, comment }) => {
+  console.log("Calling API on POST:profile/tickets/:id/comments projectId: ", projectId, " TikcetId: ", tikectId, " comment: ", comment);
+  const result = await axios.post(`profile/tickets/${ticketId}/comments`, {
+    projectId,
+    comment
+  })
+  return result
 }

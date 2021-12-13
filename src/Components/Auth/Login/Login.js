@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Input from '../../shared/Input'
 import Error from '../../shared/Error'
 import Spinner from '../../shared/Spinner'
@@ -9,6 +10,7 @@ function Login() {
   const [form, setForm] = useState({});
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const navigate = useNavigate();
 
   const onFieldChangeHandler = ({ name, value }) => {
     console.log("got data from input", name, value)
@@ -28,6 +30,8 @@ function Login() {
       setError('');
       setLoading(false);
       //Redirrect...
+      navigate("/");
+
     }
     else {
       console.log(result)

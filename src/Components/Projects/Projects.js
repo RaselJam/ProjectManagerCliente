@@ -1,22 +1,40 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import css from '../../index.module.css'
 import ProjectsHeader from './ProjectsHeader/ProjectsHeader'
 import ProjectsInfoBar from './ProjectsInfoBar/ProjectsInfoBar'
-import * as mocks from '../../Mock/mockData.js'
+import Error from '../shared/Error'
 import ProjectCart from './ProjectCart'
+import * as projectService from '../../API/ProjectServic.js'
 
 function Projects() {
-  console.log( mocks.projects)
+  const [projectsAsCreator, setprojectsAsCreator] = useState([])
+  const [projectsAsManager, setprojectsAsManager] = useState([])
+  const [projectsAsDeveloper, setprojectsAsDeveloper] = useState([])
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  useEffect(async () => {
+    setLoading(true)
+    try {
+      const projetcsAsCreator = await projectService.getrelatedProjects();
+      console.log(projetcsAsCreator)
+      setLoading(false)
+    } catch (error) {
+      setError(error)
+    }
+
+  }, [])
   return (
-    <div className={css.projectsSection}>
-      <ProjectsHeader />
-      <ProjectsInfoBar />
-      <div class={[css.projectBoxes,css.jsGridView].join(" ")}>
-      {mocks.projects.map(project => (
-        <ProjectCart key={PromiseRejectionEvent._id} project={project} />
-      ))}
-    </div>
-    </div>
+    <>
+      <Error error={error} />
+      {!loading &&
+        <div className={css.projectsSection}>
+          <ProjectsHeader />
+          <ProjectsInfoBar />
+        </div>
+      }
+      {loading && <p>Loading ...</p>}
+    </>
   )
 }
 

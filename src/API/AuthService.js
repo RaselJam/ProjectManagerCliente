@@ -22,3 +22,10 @@ export const logout = async () => {
   const result = await axios.get('/auth/logout');
   return result;
 }
+
+export const isLogedIn = async ()=>{
+  console.log("Calling API isLogedIn")
+  const result = await axios.get('/auth/islogedin');
+  return result;
+
+}

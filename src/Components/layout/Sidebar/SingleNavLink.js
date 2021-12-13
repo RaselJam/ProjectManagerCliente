@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link} from 'react-router-dom'
-import css from '../../index.module.css'
+import css from '../../../index.module.css'
 
 function SingleNavLink({ to, active, svg }) {
       return (

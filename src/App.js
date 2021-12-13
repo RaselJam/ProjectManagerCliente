@@ -1,29 +1,38 @@
-import { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { Switch, Route, Redirect } from 'react-router-dom'
+import Layout from './Components/layout/Layout'
+import Login from './Components/Auth/Login/Login'
+import Signup from './Components/Auth/Signup/Signup'
+import Protected from './Components/Router/Protected'
 
-import Login from './Components/Auth/Login/Login';
-import Signup from './Components/Auth/Signup/Signup';
-import Navbar from './Components/Navbar/Navbar';
-import Projects from './Components/Projects/Projects';
-import Sidebar from './Components/Sidebar/Sidebar';
-import css from './index.module.css'
-const mockUser = { userName: "userTest", img: "https://i.pinimg.com/736x/3a/59/42/3a59424288c02e82234909d6404260b2--character-designer-digital-art.jpg" }
-
-
+import * as authService from './API/AuthService'
 
 
 function App() {
+  const [loggedUser, setloggedUser] = useState()
+  //handlers :
+  const handleLogedIn = () => {
+
+  }
+  //
 
   return (
-    <div className={css.appContainer}>
-      <Navbar user={mockUser} />
-      <div className={css.appContent}>
-        <Sidebar />
-        <Projects />
 
-      </div>
+    <Switch>
+    <Route path="/" exact render={() => <Home />} />
+    <Route path="/home" render={() => <Layout />} />
 
-    </div>
-  );
+
+    {loggedUser ?
+      <Redirect to="coaster-list" />
+      :
+      <>
+        <Route path="/signup" render={(props) => <SignupPage {...props} storeUser={this.storeUser} />} />
+        <Route path="/login" render={(props) => <LoginPage {...props} storeUser={this.storeUser} />} />
+      </>
+    }
+  </Switch>
+  )
 }
 
-export default App;
+export default App

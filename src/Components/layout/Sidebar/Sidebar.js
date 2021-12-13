@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import SingleNavLink from './SingleNavLink'
-import * as svgs from '../../assets/svgs.js'
-import css from '../../index.module.css'
+import * as svgs from '../../../assets/svgs.js'
+import css from '../../../index.module.css'
 
 function Sidebar() {
   const [active, setActive] = useState(0)

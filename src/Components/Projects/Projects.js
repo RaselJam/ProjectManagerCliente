@@ -6,13 +6,16 @@ import * as mocks from '../../Mock/mockData.js'
 import ProjectCart from './ProjectCart'
 
 function Projects() {
+  console.log( mocks.projects)
   return (
     <div className={css.projectsSection}>
       <ProjectsHeader />
       <ProjectsInfoBar />
+      <div class={[css.projectBoxes,css.jsGridView].join(" ")}>
       {mocks.projects.map(project => (
         <ProjectCart key={PromiseRejectionEvent._id} project={project} />
       ))}
+    </div>
     </div>
   )
 }

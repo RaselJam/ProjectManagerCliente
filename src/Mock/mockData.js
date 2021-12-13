@@ -72,7 +72,7 @@ export const projects = [{
   description: "Convert your mobile phone to a Scanner, and export as PDF or any other popular foramt",
   creator: 1,
   managers: [users[1], users[2], users[3]],
-  developers: [4, 5, 6],
+  developers: [users[4], users[5], users[6]],
   createdAt: new Date(2021 - 12 - 11),
   updatedAt: new Date(2021 - 12 - 12),
   tickets: [1, 2, 3,4]
@@ -84,7 +84,7 @@ export const projects = [{
   description: "Track all you income and expenses",
   creator: 1,
   managers: [1, 2, 3],
-  developers: [7, 8, 9],
+  developers: [users[7], users[4], users[2]],
   createdAt: new Date(2021 - 12 - 8),
   updatedAt: new Date(2021 - 12 - 10),
   tickets: [1, 2, 3]
@@ -95,7 +95,7 @@ export const projects = [{
   description: "GPS and Map offline with out internet",
   creator: 1,
   managers: [1, 3],
-  developers: [5, 7, 6],
+  developers: [users[5], users[7], users[6]],
   createdAt: new Date(2021 - 12 - 11),
   updatedAt: new Date(2021 - 12 - 12),
   tickets: [1, 2]
@@ -105,7 +105,7 @@ export const projects = [{
   description: "An Ebook reader with support of  40 languages",
   creator: 1,
   managers: [1, 2, 3],
-  developers: [7, 5, 9],
+  developers: [users[7] ,users[5],users[3]],
   createdAt: new Date(2021 - 12 - 11),
   updatedAt: new Date(2021 - 12 - 12),
   tickets: [1, 2, 3,5,6]

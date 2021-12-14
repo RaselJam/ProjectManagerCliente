@@ -66,3 +66,24 @@ span.psw {
   float: right;
   padding-top: 16px;
 }
+.crateNewProjectForm {
+  width: 300px;
+}
+
+.crateNewProjectFormName {
+  width: 300px;
+  height: 20px;
+}
+
+.crateNewProjectFormTextarea{
+  width: 300px;
+  height: 85px;
+  margin-top: 7px;
+}
+
+.crateNewProjectFormButton {
+  width: 300px;
+  height: 30px;
+  border-radius: 5px;
+  padding: 0;
+}

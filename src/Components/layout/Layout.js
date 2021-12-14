@@ -5,9 +5,9 @@ import css from '../../index.module.css'
 function Layout({ children }) {
   return (
     <div className={css.appContainer}>
-      {/* <Navbar /> */}
+      <Navbar />
       <div className={css.appContent}>
-        {/* <SideBar /> */}
+        <SideBar />
         {children}
       </div>
     </div>

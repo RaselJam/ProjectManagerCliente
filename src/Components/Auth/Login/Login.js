@@ -1,46 +1,52 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Input from '../../shared/Input'
+import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Error from '../../shared/Error'
 import Spinner from '../../shared/Spinner'
 import css from '../Auth.module.css'
+import cssLocal from '../Auth.module.css'
 import * as authService from '../../../API/AuthService.js'
 
 function Login() {
-  const [form, setForm] = useState({});
+  const history = useHistory();
+  const [data, setData] = useState({
+    userName: '',
+    password: ''
+  })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const navigate = useNavigate();
-
-  const onFieldChangeHandler = ({ name, value }) => {
-    console.log("got data from input", name, value)
-    setForm({ ...form, [name]: value })
-  }
-
-
 
   const submitHandler = async e => {
     e.preventDefault()
     setLoading(true);
-    const result = await authService.login({ ...form })
+    const result = await authService.login({ ...data })
     console.log("result on login:", result)
-
-    if (result.status === 200 && result.data.messsage === 'OK') {
+    if (result.status === 200 && result.data.message === 'OK') {
       //Everything ok
+      localStorage.setItem("user", JSON.stringify(result.data.data))
       setError('');
       setLoading(false);
       //Redirrect...
-      navigate("/");
-
+      history.push("/home");
     }
     else {
       console.log(result)
-      setError(result.data.messsage)
+      setError(result.data.message)
     }
-
     setLoading(false);
-
   }
+
+  //handlers :
+  const handleInputChange = (event) => {
+    setData({
+      ...data,
+      [event.target.name]: event.target.value
+    })
+  }
+
+
+
+  //
   return (
     <div className={css.logincontainer}>
       <Error error={error} />
@@ -54,15 +60,20 @@ function Login() {
             </div>
 
             <div className={css.formcontainer}>
-              <Input onChange={onFieldChangeHandler} type="text" label={'UserName'} name={'userName'} required={true} placeholder={'Enter Username'} />
-              <Input onChange={onFieldChangeHandler} type="password" label={'Password'} name={'password'} required={true} placeholder={'Enter Password'} />
+              <label><b>User Name</b>
+                <input type="text" placeholder="Name" className={cssLocal.crateNewProjectFormName} onChange={handleInputChange} name="userName" />
+              </label>
+              <label ><b>Password</b>
+                <input type="text" placeholder="Pasword" className={cssLocal.crateNewProjectFormName} onChange={handleInputChange} name="password" />
+              </label>
               <button type="submit">Login</button>
-              <Input type="checkbox" onChange={onFieldChangeHandler} label={'Remember Me'} defaultChecked name="remember" />
+              {/* <Input type="checkbox" onChange={onFieldChangeHandler} label={'Remember Me'} defaultChecked name="remember" /> */}
             </div>
 
             <div className={css.formcontainer}>
               <button type="button" className={css.cancelbtn}>Cancel</button>
               <span className={css.psw}>Forgot <a href="#">password?</a></span>
+              <span className={css.psw}>dont have Account? <Link to="/signup">SignUp</Link></span>
             </div>
           </form>
         </>

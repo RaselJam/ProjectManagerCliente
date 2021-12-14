@@ -1,9 +1,12 @@
 import axios from "axios";
-
+const localURL = "http://localhost:3000/"
+const remoteURL = 'https://raselapi.herokuapp.com/'
 const instance = axios.create({
-  baseURL: 'https://raselapi.herokuapp.com/',
-  timeout: 3000,
+  baseURL: remoteURL,
+  timeout: 4000,
+  withCredentials: true
 });
+
 instance.interceptors.response.use((response) => response, (error) => {
   console.log("Error....", error)
 

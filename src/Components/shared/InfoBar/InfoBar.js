@@ -3,16 +3,21 @@ import css from '../../../index.module.css'
 import * as svgs from '../../../assets/svgs.js'
 //infoToShow type: [{ title, info, }]
 
-function InfoBar({ infoToShow }) {
+function InfoBar({ infoToShow, onClick }) {
+  //handlres:
+  const onclickHandler = (e) => {
+       onClick(e.target.getAttribute('name'))
+  }
 
+  //
   return (
     <div className={css.projectsSectionLine}>
 
       <div className={css.projectsStatus}>
         {infoToShow.map(elm => (
-          <div key={elm.title} className={css.itemStatus}>
+          <div key={elm.identifier} className={css.itemStatus}>
             <span className={css.statusNumber}>{elm.info}</span>
-            <span className={css.statusType}>{elm.title}</span>
+            <span  name={elm.identifier} onClick={onclickHandler} className={css.statusType}>{elm.title}</span>
           </div>
         ))}
       </div>

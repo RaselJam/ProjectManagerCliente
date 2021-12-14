@@ -1,37 +1,42 @@
 import React, { useState, useEffect } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
+import Home from './Components/Home'
 import Layout from './Components/layout/Layout'
 import Login from './Components/Auth/Login/Login'
 import Signup from './Components/Auth/Signup/Signup'
-import Protected from './Components/Router/Protected'
 
-import * as authService from './API/AuthService'
+
+
 
 
 function App() {
   const [loggedUser, setloggedUser] = useState()
-  //handlers :
-  const handleLogedIn = () => {
+  useEffect(() => {
+    getcurrentUser()
+  }, [])
 
+  const getcurrentUser = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      setloggedUser(user)
+      console.log(user)
+    }
   }
-  //
 
   return (
 
     <Switch>
-    <Route path="/" exact render={() => <Home />} />
-    <Route path="/home" render={() => <Layout />} />
+      <Route path="/home" component={() => <Home />} />
+      <Route path="/signup" render={(props) => <Signup {...props} />} />
+      <Route path="/login" render={(props) => <Login {...props} />} />
+      <Route path="/" render={() => <Home />} />
 
-
-    {loggedUser ?
-      <Redirect to="coaster-list" />
-      :
-      <>
-        <Route path="/signup" render={(props) => <SignupPage {...props} storeUser={this.storeUser} />} />
-        <Route path="/login" render={(props) => <LoginPage {...props} storeUser={this.storeUser} />} />
-      </>
-    }
-  </Switch>
+      {loggedUser ?
+        <Redirect to="/" />
+        :
+        <Redirect to="/login" />
+      }
+    </Switch>
   )
 }
 

@@ -1,5 +1,6 @@
 import axios from './axios/axios.config.js';
 
+
 export const getAllasIfSuper = async () => {
   console.log("Calling API on Get:All")
   const result = await axios.get('projetcs')
@@ -19,14 +20,14 @@ export const getManagerProjects = async () => {
 }
 
 export const getrelatedProjects = async () => {
-  console.log("Calling API on Get:profile/r")
-  const result = await axios.get('projects/user-projects-as-manager')
+  console.log("Calling API on Get:profile/related")
+  const result = await axios.get('profile',{withCredentials: true })
   return result;
 }
 export const getProjectById = async ({ projectId }) => {
   console.log("Calling API on Get:projects/:id   with id: ", projectId)
-
   const result = await axios.get(`projects/${projectId}`)
+console.log("in APISerice :",result)
   return result;
 }
 
@@ -38,7 +39,7 @@ export const createProject = async ({ name, description }) => {
 
 export const addDevToProject = async ({ developerId, projectId }) => {
   console.log("Calling API on POST:projects/:id/add-dev dev-id: ", developerId, "ProjectID :", projectId)
-  const result = await axios.post(`projects/${projectId}/add-dev`, { developerId })
+  const result = await axios.post(`projects/${projectId}/add-dev`, { developerId,projectId })
   return result;
 }
 

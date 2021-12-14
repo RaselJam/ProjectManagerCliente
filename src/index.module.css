@@ -96,7 +96,6 @@ a {
   width: 100%;
   padding: 26px 29px;
   position: relative;
-
 }
 .appHeaderLeft,
 .appHeaderRight {
@@ -163,7 +162,8 @@ a {
   width: 100%;
   max-width: 480px;
   color: var(--light-font);
-  box-shadow: 0 2px 6px 0 rgba(136, 148, 171, 0.2), 0 24px 20px -24px rgba(71, 82, 107, 0.1);
+  box-shadow: 0 2px 6px 0 rgba(136, 148, 171, 0.2),
+    0 24px 20px -24px rgba(71, 82, 107, 0.1);
   overflow: hidden;
 }
 .dark .searchWrapper {
@@ -256,6 +256,18 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+.appSidebarLink span {
+  position: absolute;
+  opacity: 0;
+  top: -20px;
+  right: -30%;
+  transition: all 0.5s ease-in-out;
+}
+.appSidebarLink:hover span {
+  color: black;
+  opacity: 1;
 }
 .appSidebarLink:hover {
   background-color: var(--link-color-hover);
@@ -303,14 +315,15 @@ a {
 
 .projectsStatus {
   display: flex;
+  width: 60%;
 }
 
 .itemStatus {
   display: flex;
   flex-direction: column;
-  margin-right: 16px;
+  margin-right: 26px;
 }
-.itemStatus:not(:last-child) .statusType:after {
+/* .itemStatus:not(:last-child) .statusType:after {
   content: "";
   position: absolute;
   right: 8px;
@@ -320,7 +333,7 @@ a {
   height: 6px;
   border-radius: 50%;
   border: 1px solid var(--secondary-color);
-}
+} */
 
 .statusNumber {
   font-size: 24px;
@@ -333,6 +346,11 @@ a {
   position: relative;
   padding-right: 24px;
   color: var(--secondary-color);
+  cursor: pointer;
+}
+.statusType:hover {
+  color: var(--main-color);
+  transform: scale(102%);
 }
 
 .viewActions {
@@ -544,6 +562,13 @@ a {
   display: flex;
   align-items: center;
 }
+.participants p {
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+.person:hover p {
+  opacity: 1;
+}
 .participants img {
   width: 20px;
   height: 20px;
@@ -568,7 +593,12 @@ a {
   align-items: center;
   padding: 0;
 }
-
+.newDev {
+  margin-left: 1rem;
+}
+.newDev button {
+  border-radius: 20px;
+}
 .daysLeft {
   background-color: rgba(255, 255, 255, 0.6);
   font-size: 12px;
@@ -633,6 +663,10 @@ a {
   .messagesBtn {
     display: flex;
   }
+}
+.logout {
+  border-radius: 10px;
+  margin: 0.5rem;
 }
 @media screen and (max-width: 720px) {
   .appName,
@@ -723,8 +757,6 @@ a {
   .statusType:after {
     display: none;
   }
-
-
 
   .messagesBtn {
     top: 48px;

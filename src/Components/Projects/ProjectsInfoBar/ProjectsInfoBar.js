@@ -4,9 +4,9 @@ import React from 'react'
 import InfoBar from '../../shared/InfoBar/InfoBar'
 
 //TODO get Data from context
-function ProjectsInfoBar({ infoToShow }) {
+function ProjectsInfoBar({ infoToShow , onClick}) {
   return (
-    <InfoBar infoToShow={infoToShow} />
+    <InfoBar onClick={onClick} infoToShow={infoToShow} />
   )
 }
 

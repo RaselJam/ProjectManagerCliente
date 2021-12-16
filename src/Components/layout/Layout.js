@@ -2,10 +2,10 @@ import React from 'react'
 import Navbar from './Navbar/Navbar'
 import SideBar from './Sidebar/Sidebar'
 import css from '../../index.module.css'
-function Layout({ children }) {
+function Layout({toggleTheme, children }) {
   return (
     <div className={css.appContainer}>
-      <Navbar />
+      <Navbar toggleTheme={toggleTheme}/>
       <div className={css.appContent}>
         <SideBar />
         {children}

@@ -8,8 +8,8 @@ export const getProfileData = async () => {
 }
 
 export const getUserTickets = async () => {
-  console.log("Calling API on Get:profile/my-tickets ")
-  const result = await axios.get('profile/my-tickets')
+  console.log("Calling API on Get:profile/tickets/my-tickets ")
+  const result = await axios.get('profile/tickets/my-tickets')
   return result;
 }
 
@@ -62,7 +62,7 @@ export const createTicket = async ({ projectId, number, description, predecessor
 }
 
 
-export const removeTask = async ({ projectId, ticketId, taskId }) => {
+export const removeTask = async ({ projectId, ticketId, taskId, predecessor }) => {
   if (!predecessor) predecessor = '';
   console.log("Calling API on POST:profile/tickets/remove-task  projectId:", projectId, "tikcetId : ", ticketId, "taskId : ", taskId)
   const result = await axios.post(`profile/tickets/remove-task`, { projectId, ticketId, taskId })
@@ -84,8 +84,8 @@ export const getCommentsOfTicket = async ({ ticketId, projectId }) => {
   return result;
 }
 
-export const postCommentOnTicket = async ({ tikectId, projectId, comment }) => {
-  console.log("Calling API on POST:profile/tickets/:id/comments projectId: ", projectId, " TikcetId: ", tikectId, " comment: ", comment);
+export const postCommentOnTicket = async ({ ticketId, projectId, comment }) => {
+  console.log("Calling API on POST:profile/tickets/:id/comments projectId: ", projectId, " TikcetId: ", ticketId, " comment: ", comment);
   const result = await axios.post(`profile/tickets/${ticketId}/comments`, {
     projectId,
     comment

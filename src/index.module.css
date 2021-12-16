@@ -446,7 +446,7 @@ a {
   border-radius: 30px;
   padding: 16px;
   background-color: var(--main-color-card);
-  height: 620px;
+  height: auto;
 }
 .projectBoxHeader {
   display: flex;
@@ -471,6 +471,7 @@ a {
 .projectBoxWrapper {
   padding: 8px;
   transition: 0.2s;
+  min-height:  fit-content;
 }
 
 .projectBtnMore {
@@ -547,6 +548,11 @@ a {
   justify-content: space-between;
   padding-top: 16px;
   position: relative;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.projectBoxFooter p {
+  width: 100%;
 }
 .projectBoxFooter:after {
   content: "";
@@ -561,14 +567,22 @@ a {
 .participants {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+
+}
+
+.person {
+  margin: 0.5rem;
+  padding: 0.4rem;
+  background-color: var(--more-list-bg);
+  border-radius: 5%;
 }
 .participants p {
-  opacity: 0;
+  min-width: fit-content;
+  padding: 0px 2rem;
   transition: all 0.2s ease-in-out;
 }
-.person:hover p {
-  opacity: 1;
-}
+
 .participants img {
   width: 20px;
   height: 20px;
@@ -626,7 +640,27 @@ a {
   padding: 4px;
   display: none;
 }
+.crateNewProjectForm {
+  width: 300px;
+}
 
+.crateNewProjectFormName {
+  width: 300px;
+  height: 20px;
+}
+
+.crateNewProjectFormTextarea {
+  width: 300px;
+  height: 85px;
+  margin-top: 7px;
+}
+
+.crateNewProjectFormButton {
+  width: 300px;
+  height: 30px;
+  border-radius: 5px;
+  padding: 0;
+}
 @media screen and (max-width: 980px) {
   .projectBoxes.jsGridView .projectBoxWrapper {
     width: 50%;

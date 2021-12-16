@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import css from '../../index.module.css'
-import ProjectsHeader from './ProjectsHeader/ProjectsHeader'
-import ProjectsInfoBar from './ProjectsInfoBar/ProjectsInfoBar'
+import MainHeader from './ProjectsHeader/MainHeader'
+import InfoBar from '../shared/InfoBar/InfoBar'
 import Error from '../shared/Error'
 import ProjectCart from './ProjectCart'
 import * as projectService from '../../API/ProjectServic.js'
+
 
 function Projects() {
   const [projectsAsCreator, setprojectsAsCreator] = useState([])
   const [projectsAsManager, setprojectsAsManager] = useState([])
   const [projectsAsDeveloper, setprojectsAsDeveloper] = useState([])
   const [projectsToShow, setProjectsToShow] = useState([])
+
   const [isManagaer, setIsManagaer] = useState(false)
   const [isCreator, setIsCreator] = useState(false)
-  const [ticketsDone, setTicketsDone] = useState([])
-  const [ticketsNotDone, setTicketsNotdone] = useState([])
+
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [isGrid, setIsGrid] = useState(false)
 
-  useEffect(async () => {
+  useEffect(async() => {
     setLoading(true)
     async function loadData() {
       const result = await projectService.getrelatedProjects();
@@ -28,7 +30,7 @@ function Projects() {
       const incommingData = await loadData();
       console.log("incomming-data :", incommingData)
       let loadedProjects = incommingData.projects;
-      let loadedTickets = incommingData.tickets;
+
 
       //incomingData:{
       //              projects: {asCreator: Array(1), asManager: Array(1), asDev: Array(2)}
@@ -37,8 +39,7 @@ function Projects() {
       setprojectsAsCreator([...loadedProjects.asCreator])
       setprojectsAsManager([...loadedProjects.asManager])
       setprojectsAsDeveloper([...loadedProjects.asDev])
-      setTicketsDone([...loadedTickets.done])
-      setTicketsNotdone([...loadedTickets.notDone])
+
 
       setLoading(false)
       setError('');
@@ -58,7 +59,9 @@ function Projects() {
     setIsCreator((toshow === 'projectsAsCreator'))
     setProjectsToShow([...options[toshow]])
   }
-
+  const toggleGridHandler = () => {
+    setIsGrid(prevSt => !prevSt)
+  }
 
   //
   return (
@@ -66,11 +69,18 @@ function Projects() {
       <Error error={error} />
       {!loading &&
         <div className={css.projectsSection}>
-          <ProjectsHeader />
-          <ProjectsInfoBar onClick={onToShowChange} infoToShow={[{ title: 'Own Projects', info: projectsAsCreator.length, identifier: 'projectsAsCreator' }, { title: 'Projects as manager', info: projectsAsManager.length, identifier: 'projectsAsManager' }, { title: 'Projects as Developer', info: projectsAsDeveloper.length, identifier: 'projectsAsDeveloper' }]} />
-          <div className={css.projectBoxes}>
+          <MainHeader title="Projects" />
+          <InfoBar
+            onClick={onToShowChange}
+            infoToShow={
+              [{ title: 'Own Projects', info: projectsAsCreator.length, identifier: 'projectsAsCreator' }, { title: 'Projects as manager', info: projectsAsManager.length, identifier: 'projectsAsManager' }, { title: 'Projects as Developer', info: projectsAsDeveloper.length, identifier: 'projectsAsDeveloper' }
+              ]}
+            onToggleGrid={toggleGridHandler} />
+
+
+          <div className={[css.projectBoxes, (isGrid ? css.jsGridView : '')].join(" ")}>
             {projectsToShow.map(project => (
-              <ProjectCart canAddDev={isManagaer} canAddManager={isCreator} c key={project._id} project={project} />
+              <ProjectCart canAddDev={isManagaer} canAddManager={isCreator}  key={project._id} project={project} />
             ))}
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import Home from './Components/Home'
-import Layout from './Components/layout/Layout'
+
 import Login from './Components/Auth/Login/Login'
 import Signup from './Components/Auth/Signup/Signup'
 

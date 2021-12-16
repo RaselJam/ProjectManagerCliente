@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import * as svgs from '../../../assets/svgs.js'
 import css from '../../../index.module.css';
 import * as authService from '../../../API/AuthService.js'
 
 
-function Navbar() {
+function Navbar({ toggleTheme }) {
   const [loggedUser, setloggedUser] = useState({})
   const history = useHistory();
 
@@ -32,10 +33,10 @@ function Navbar() {
     } catch (error) {
       console.log(error)
     }
-
-
   }
-
+  const onToggleClicked = () => {
+    toggleTheme();
+  }
   //
   return (
     <div className={css.appHeader}>
@@ -48,19 +49,18 @@ function Navbar() {
         </div>
       </div>
       <div className={css.appHeaderRight}>
-        <button className={css.modeSwitch} title="Switch Theme">
+        <button onClick={onToggleClicked} className={css.modeSwitch} title="Switch Theme">
           {svgs.moon('moon')}
         </button>
-        <button className={css.addBtn} title="Add New Project">
-          {svgs.add(css.btnIcon)}
-        </button>
+        <Link to="/home/newProject" title="Add New Project" className={css.addBtn} > {svgs.add(css.btnIcon)}</Link>
+
         <button className={css.notificationBtn}>
           {svgs.notBtn()}
         </button>
         <button className={css.profileBtn}>
         </button>
-          {/* <img src={loggedUser.img} /> */}
-          <button className={css.logout} onClick={onlogOutHandler} >Logout</button> <span>{loggedUser.userName}</span>
+        {/* <img src={loggedUser.img} /> */}
+        <button className={css.logout} onClick={onlogOutHandler} >Logout</button> <span>{loggedUser.userName}</span>
 
       </div>
 

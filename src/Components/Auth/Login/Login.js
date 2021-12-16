@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Error from '../../shared/Error'
@@ -24,8 +24,7 @@ function Login() {
     if (result.status === 200 && result.data.message === 'OK') {
       //Everything ok
       localStorage.setItem("user", JSON.stringify(result.data.data))
-      setError('');
-      setLoading(false);
+
       //Redirrect...
       history.push("/home");
     }
@@ -64,7 +63,7 @@ function Login() {
                 <input type="text" placeholder="Name" className={cssLocal.crateNewProjectFormName} onChange={handleInputChange} name="userName" />
               </label>
               <label ><b>Password</b>
-                <input type="text" placeholder="Pasword" className={cssLocal.crateNewProjectFormName} onChange={handleInputChange} name="password" />
+                <input type="password" placeholder="Pasword" className={cssLocal.crateNewProjectFormName} onChange={handleInputChange} name="password" />
               </label>
               <button type="submit">Login</button>
               {/* <Input type="checkbox" onChange={onFieldChangeHandler} label={'Remember Me'} defaultChecked name="remember" /> */}
@@ -72,7 +71,7 @@ function Login() {
 
             <div className={css.formcontainer}>
               <button type="button" className={css.cancelbtn}>Cancel</button>
-              <span className={css.psw}>Forgot <a href="#">password?</a></span>
+              <span className={css.psw}>Forgot <a href="/">password?</a></span>
               <span className={css.psw}>dont have Account? <Link to="/signup">SignUp</Link></span>
             </div>
           </form>

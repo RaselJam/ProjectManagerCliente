@@ -30,3 +30,27 @@ export function splitArrayBasedOnProp(arr, prop) {
   })
   return [arr1, arr2]
 }
+
+ export function splitTicketsDataBasedOnIsDone (arr){
+  //arr:[{tasks:[], tickets:[{
+// createdAt: "2021-12-11T16:18:09.444Z"
+  // creator: "61b33b7f6b385c03e7737b3d"
+  // description: "dexcrip"
+  // developer: "61b33aac6b385c03e7737b3b"
+  // isDone: true
+  // number: "1"
+  // project: "61b4cc8b31b80fbffd5d80f8"
+  // updatedAt: "2021-12-11T16:22:57.000Z"
+  // __v: 0
+//  }]}]
+  let done=[];
+  let wip=[];
+  arr.forEach(elm=>{
+     let topush={tasks:[...elm.tasks], ticket:elm.ticket}
+      elm.ticket.isDone? done.push(topush) : wip.push(topush)
+  })
+
+  return {done, wip}
+
+
+ }

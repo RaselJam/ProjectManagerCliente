@@ -4,7 +4,7 @@ import MainHeader from '../Projects/ProjectsHeader/MainHeader'
 import InfoBar from '../shared/InfoBar/InfoBar'
 import Error from '../shared/Error'
 import * as tikcetService from '../../API/TicketService.js'
-import { splitArrayBasedOnProp } from '../../helpers/helper.js'
+import { splitTicketsDataBasedOnIsDone } from '../../helpers/helper.js'
 
 function Tickets() {
   const [ticketsDone, setTicketsDone] = useState([])
@@ -16,14 +16,23 @@ function Tickets() {
   const [isGrid, setIsGrid] = useState(false)
 
   useEffect(async () => {
-    setLoading(true)
-    const loadData = async () => await tikcetService.getUserTickets();
+      setLoading(true)
+    const loadData = async () =>
+    {
+        const result =await tikcetService.getUserTickets();
+        console.log("in function : result:", result)
+        return result;
+
+    }
+
 
     try {
       const incommingData = await loadData();
-      console.log(incommingData.data.data)
-      setTicketsToShow([...incommingData.data.data])
-      // const [done, wip] = splitArrayBasedOnProp(incommingData.data.data, 'isDone');
+      console.log("incommig : ",incommingData)
+      // setTicketsToShow([...incommingData.data.data])
+      // const [done, wip] = splitTicketsDataBasedOnIsDone(incommingData.data.data);
+      // console.log("done: ",done)
+      // console.log("done: ",wip)
       // setTicketsDone([...done]);
       // setTicketsWIP([...wip])
 

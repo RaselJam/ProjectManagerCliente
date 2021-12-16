@@ -471,7 +471,7 @@ a {
 .projectBoxWrapper {
   padding: 8px;
   transition: 0.2s;
-  min-height:  fit-content;
+  min-height: fit-content;
 }
 
 .projectBtnMore {
@@ -568,7 +568,6 @@ a {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-
 }
 
 .person {
@@ -833,3 +832,24 @@ a {
     top: 10px;
   }
 }
+/* Ticket WorkFlow section */
+.workFlowSection {
+}
+.aColumn {
+  background-color: yello;
+}
+.bColumn {
+  background-color: blue;
+}
+.cColumn {
+  background-color: green;
+}
+
+.ticketsContainer {
+}
+
+.singleTicket {
+  border: 1px solid red;
+}
+
+/* Ticket WorkFlow section------------END */

@@ -1,4 +1,5 @@
 export const getformatedDate = (date) => {
+
   const createdAt = new Date(date)
   let d = createdAt.getDate();
   let m = createdAt.getMonth();
@@ -43,14 +44,13 @@ export function splitArrayBasedOnProp(arr, prop) {
   // updatedAt: "2021-12-11T16:22:57.000Z"
   // __v: 0
 //  }]}]
+console.log("splitting ...")
   let done=[];
   let wip=[];
   arr.forEach(elm=>{
      let topush={tasks:[...elm.tasks], ticket:elm.ticket}
       elm.ticket.isDone? done.push(topush) : wip.push(topush)
   })
-
+  console.log("splitTicketsDataBasedOnIsDone -done:", done ," wip: ",  wip)
   return {done, wip}
-
-
  }

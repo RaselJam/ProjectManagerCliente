@@ -6,6 +6,7 @@ import Projects from './Projects/Projects'
 import * as projectService from '../API/ProjectServic.js'
 import Profile from './Profile/Profile'
 import Tickets from './Tickets/Tickets'
+import ProjectDetail from './Projects/ProjectDetail/ProjectDetail'
 
 function Home({ children }) {
   const [theme, setTheme] = useState()
@@ -26,10 +27,12 @@ function Home({ children }) {
         <Tickets/>
       </Route>
 
-      <Route path="/home/projects">
+      <Route exact path="/home/projects">
         <Projects />
       </Route>
-
+      <Route exact path="/home/projects/:id">
+        <ProjectDetail/>
+      </Route>
       <Route path="/home/newProject">
         <CreateNewProject />
       </Route>

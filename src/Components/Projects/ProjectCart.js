@@ -4,6 +4,7 @@ import css from '../../index.module.css'
 import * as projectService from '../../API/ProjectServic.js'
 import * as helper from '../../helpers/helper.js'
 import AdduserToProjectForm from './AdduserToProjectForm.js'
+import { Link } from 'react-router-dom'
 
 function ProjectCart({ project, canAddDev, canAddManager }) {
 
@@ -57,9 +58,12 @@ function ProjectCart({ project, canAddDev, canAddManager }) {
           <br />
           <span> last Update : {helper.getformatedDate(thisProject.updatedAt)}</span>
           <div className={css.moreWrapper}>
-            <button className={css.projectBtnMore}>
-              {svgs.btnMore()}
-            </button>
+
+            <Link to={`/home/projects/${thisProject._id}`}>
+              Work flow ...
+            </Link>
+            {/* {svgs.btnMore()} */}
+
 
           </div>
         </div>
@@ -84,7 +88,7 @@ function ProjectCart({ project, canAddDev, canAddManager }) {
               thisProject.developers.map(developer => {
                 console.log("dev: ", developer)
                 return (
-                  <div className={css.person}><img
+                  <div key={developer._id} className={css.person}><img
                     key={developer._id}
                     src={developer.img}
                     alt={developer.userName}
@@ -110,7 +114,7 @@ function ProjectCart({ project, canAddDev, canAddManager }) {
               thisProject.managers.map(manager => {
                 console.log("manger: ", manager)
                 return (
-                  <div className={css.person}><img
+                  <div key={manager._id} className={css.person}><img
                     key={manager._id}
                     src={manager.img}
                     alt={manager.userName}

@@ -2,7 +2,7 @@ import axios from "axios";
 const localURL = "http://localhost:3000/"
 const remoteURL = 'https://raselapi.herokuapp.com/'
 const instance = axios.create({
-  baseURL: remoteURL,
+  baseURL: localURL,
   timeout: 4000,
   withCredentials: true
 });

@@ -24,19 +24,19 @@ function App() {
   }
 
   return (
-<p>HelloWorld</p>
-    // <Switch>
-    //   <Route path="/home" component={() => <Home />} />
-    //   <Route path="/signup" render={(props) => <Signup {...props} />} />
-    //   <Route path="/login" render={(props) => <Login {...props} />} />
-    //   <Route path="/" render={() => <Home />} />
 
-    //   {loggedUser ?
-    //     <Redirect to="/" />
-    //     :
-    //     <Redirect to="/login" />
-    //   }
-    // </Switch>
+    <Switch>
+      <Route path="/home" component={() => <Home />} />
+      <Route path="/signup" render={(props) => <Signup {...props} />} />
+      <Route path="/login" render={(props) => <Login {...props} />} />
+      <Route path="/" render={() => <Home />} />
+
+      {loggedUser ?
+        <Redirect to="/" />
+        :
+        <Redirect to="/login" />
+      }
+    </Switch>
   )
 }
 

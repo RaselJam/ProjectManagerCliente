@@ -26,7 +26,7 @@ export const getrelatedProjects = async () => {
 }
 export const getProjectById = async ({ projectId }) => {
   console.log("Calling API on Get:projects/:id   with id: ", projectId)
-  const result = await axios.get(`projects/${projectId}`)
+  const result = await axios.get(`projects/${projectId}`,{projectId:projectId})
   console.log("in APISerice :", result)
   return result;
 }

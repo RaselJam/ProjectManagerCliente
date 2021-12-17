@@ -144,7 +144,7 @@ a {
 .modeSwitch {
   background-color: transparent;
   border: none;
-  padding: 0;
+  padding: 8px;
   color: var(--main-color);
   display: flex;
   justify-content: center;
@@ -171,7 +171,7 @@ a {
 }
 
 .searchInput {
-  border: none;
+  border: none !important;
   flex: 1;
   outline: none;
   height: 100%;
@@ -192,7 +192,7 @@ a {
   border: 0;
   border-radius: 50%;
   width: 32px;
-  height: 32px;
+  height: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -261,8 +261,8 @@ a {
 .appSidebarLink span {
   position: absolute;
   opacity: 0;
-  top: -20px;
-  right: -30%;
+  top: -28px;
+  right: -14%;
   transition: all 0.5s ease-in-out;
 }
 .appSidebarLink:hover span {
@@ -447,6 +447,8 @@ a {
   padding: 16px;
   background-color: var(--main-color-card);
   height: auto;
+  overflow: scroll;
+  height: 600px;
 }
 .projectBoxHeader {
   display: flex;
@@ -595,19 +597,19 @@ a {
 }
 
 .addParticipant {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
+  height: 30px;
+  width: 200px;
   border: none;
   background-color: rgba(255, 255, 255, 0.6);
   margin-left: 6px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0;
+  padding: 0 10px !important;
 }
 .newDev {
   margin-left: 1rem;
+  width: 200px;
 }
 .newDev button {
   border-radius: 20px;
@@ -836,20 +838,68 @@ a {
 .workFlowSection {
 }
 .aColumn {
-  background-color: yello;
+  width: calc(33% - 15px);
+  border-radius: 30px;
+  padding: 16px;
+  background-color: rgb(255, 211, 226);
+  height: 571px;
+  margin: 9px;
+  text-align: center;
 }
 .bColumn {
-  background-color: blue;
+  width: calc(33% - 15px);
+  border-radius: 30px;
+  padding: 16px;
+  background-color: #f6e07d;
+  height: 571px;
+  margin: 9px;
+  text-align: center;
 }
 .cColumn {
-  background-color: green;
+  width: calc(33% - 15px);
+  border-radius: 30px;
+  padding: 16px;
+  background-color: #dbf6fd;
+  height: 571px;
+  margin: 9px;
+  text-align: center;
 }
 
 .ticketsContainer {
 }
 
 .singleTicket {
-  border: 1px solid red;
+  border: 1px solid #e6cb51;
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px;
+  margin: 18px 0px;
+  width:80%;
 }
 
+button {
+  background-color: #2f4d93;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 8px;
+}
 /* Ticket WorkFlow section------------END */
+
+.tickets {
+  padding: 5px 22px;
+  margin: 5px;
+  overflow-y: auto;
+  background: #e6cb51;
+  width: 33%;
+  border-radius: 10px;
+}
+
+.profileContainer {
+  width: 100%;
+  text-align: center;
+  padding: 300px 6px;
+}

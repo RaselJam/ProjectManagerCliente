@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom'
 function Tickets() {
   const [ticketsDone, setTicketsDone] = useState([])
   const [ticketsWIP, setTicketsWIP] = useState([])
+  const [canDone, setCanDone] = useState(false)
+
   const [ticketsToShow, setTicketsToShow] = useState([{}])
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -48,7 +50,23 @@ function Tickets() {
       WIP: ticketsWIP
     }
     setTicketsToShow([...options[toShow]])
+    setCanDone(toShow === 'WIP')
 
+  }
+  const onDoingTHandler =  async ({ ticketId, projectId }) => {
+    console.log("Doing ...:", ticketId, "proj: ", projectId)
+    setLoading(true);
+    try {
+      const result = await tikcetService.doTikcet({ ticketId, projectId })
+      if (result.data.message === "OK") {
+        setTicketsDone(prev => [...prev, result.data.data])
+        setTicketsWIP(prev => prev.filter(elm => elm._id !== ticketId))
+        setError('')
+      }
+    } catch (error) {
+      setError("Error on Doing Ticket")
+    }
+    setLoading(false);
   }
   //
   return (
@@ -70,7 +88,7 @@ function Tickets() {
 
               {/* elm :{tasks:[], ticket:{}} */ }
               return (
-                <div >
+                <div className={css.tickets}>
                   <h5>Ticket Number: {elm.ticket?.number}</h5>
                   <h5>belong to project : {elm.ticket?.project.name}</h5><Link to={`/home/projects/${elm.ticket?.project._id}`}>More onfo about project</Link>
                   <p>created at  :{getformatedDate(elm.ticket?.createdAt)}</p>
@@ -89,7 +107,7 @@ function Tickets() {
 
                   </ul>
 
-
+                  {canDone && <button onClick={onDoingTHandler.bind(this, { ticketId: elm?.ticket?._id, projectId: elm.ticket?.project._id })}>Do it</button>}
                 </div>
               )
 

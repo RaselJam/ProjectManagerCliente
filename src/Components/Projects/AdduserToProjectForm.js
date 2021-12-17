@@ -17,16 +17,16 @@ function AdduserToProjectForm({ onUserAdded, targetRoleOnAdd }) {
   }
   //
   return (
-    <>
-
+    <div>
       <button onClick={onAddmoreHandler} className={css.addParticipant} style={{ color: "#df3670" }}>
-        {svgs.addMore()}
+       {/*  {svgs.addMore()} */}
+        Add {targetRoleOnAdd}
       </button>
       {showForm && <div  className={css.newDev}>
         <input ref={newUserRef} type="text" placeholder='Enter userId' />
         <button onClick={handleAdduserHandlers}>Add more people </button>
       </div>}
-    </>
+    </div>
   )
 }
 

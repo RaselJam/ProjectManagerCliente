@@ -26,7 +26,11 @@ export const getTicketsOfProject = async ({ projectId }) => {
   return result;
 }
 
-
+export const doTikcet = async ({ ticketId, projectId }) => {
+  console.log("calling API on Doing Ticket")
+  const result = await axios.post(`profile/tickets/do-Ticket`, { projectId, ticketId })
+  return result;
+}
 
 export const takeThisTicket = async ({ projectId, ticketId }) => {
   console.log("Calling API on POST:profile/tickets/take-it  projectId:", projectId, "tikcetId: ", ticketId)

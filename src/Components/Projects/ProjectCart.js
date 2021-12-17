@@ -82,8 +82,9 @@ function ProjectCart({ project, canAddDev, canAddManager }) {
           <p className={css.boxProgressPercentage}>20%</p>
         </div>
         <div className={css.projectBoxFooter}>
+        <div>
+        <p>Developers</p>
           <div className={css.participants}>
-            <p>Developers :</p>
             <section> {
               thisProject.developers.map(developer => {
                 console.log("dev: ", developer)
@@ -101,15 +102,18 @@ function ProjectCart({ project, canAddDev, canAddManager }) {
               <>
                 {canAddDev &&
                   <>
-                    <p>Add more Developer </p> <AdduserToProjectForm onUserAdded={handleUserAdded} targetRoleOnAdd={helper.ROLES.developer} />
+                    <AdduserToProjectForm onUserAdded={handleUserAdded} targetRoleOnAdd={helper.ROLES.developer} />
                   </>
                 }
 
               </>}
             {loading && <p>Loading ....</p>}
           </div>
+          </div>
+          <div>
+          <p>Managers</p>
           <div className={css.participants}>
-            <p>Managers :</p>
+
             <section>{
               thisProject.managers.map(manager => {
                 console.log("manger: ", manager)
@@ -131,6 +135,7 @@ function ProjectCart({ project, canAddDev, canAddManager }) {
               </>
             }
 
+          </div>
           </div>
           <div className={css.daysLeft} style={{ color: "#df3670" }}>{ageOfProject !== 0 ? `${ageOfProject} Days pased` : 'Just created today'}</div>
           <p>Description : {project.description}</p>

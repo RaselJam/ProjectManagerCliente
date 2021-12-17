@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import * as ticketService from '../../../API/TicketService.js'
 import { getProjectById } from '../../../API/ProjectServic.js'
@@ -15,6 +15,12 @@ function ProjectDetail() {
   const [doneT, setDoneT] = useState([])
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [loadingAColumn, setLoadingAColumn] = useState(false)
+  const [loadingBColumn, setLoadingBColumn] = useState(false)
+  const [loadingCColumn, setLoadingCColumn] = useState(false)
+
+  const newTicketNumber = useRef('');
+  const newTicketDescription = useRef('');
 
 
   useEffect(() => {
@@ -73,17 +79,72 @@ function ProjectDetail() {
     console.log("taking it id: ", id)
 
   }
-  const doingTicketHandler = (id) => {
+  const doingTicketHandler = async (id) => {
     console.log("Do it, id: ", id)
+    setLoadingBColumn(true)
+    setLoadingCColumn(true)
     try {
+      const result = await ticketService.doTikcet({ ticketId: id, projectId: thisProject._id })
+      console.log("Res on doing.. : ", result)
+      if (result.data.message === "OK") {
+        setDoneT(prev => [...prev, result.data.data])
+        setTakenT(prev => prev.filter(elm => elm._id !== id))
+      }
+      else setError("Error on taking Ticket")
+
 
     } catch (error) {
       console.log(error)
       setError("Error on Setting TicketDone, see console for more info")
     }
+    setLoadingBColumn(false)
+    setLoadingCColumn(false)
+  }
+  const handleNewTicket = async (e) => {
+    e.preventDefault()
+    console.log(newTicketNumber.current, newTicketDescription.current)
+    try {
+      setLoadingAColumn(true)
+      const result = await ticketService.createTicket({ projectId: thisProject._id, number: newTicketNumber.current, description: newTicketDescription.current })
+      if (result.data.message === 'OK') {
+        setNotTakenT(prevSt => [...prevSt, result.data.data])
+        setError('')
+      }
+
+    } catch (error) {
+      setError("Error on Ading new Tikcet.")
+
+    }
+    setLoadingAColumn(false)
+
+  }
+  const handleNumberChange = (e) => {
+    console.log(e.target.name, e.target.value)
+    newTicketNumber.current = e.target.value;
+  }
+  const handleDescriptionChange = (e) => {
+    console.log(e.target.name, e.target.value)
+    newTicketDescription.current = e.target.value;
+  }
+  const handleTakeT = async (id) => {
+    setLoadingAColumn(true)
+    setLoadingBColumn(true)
+    try {
+      const result = await ticketService.takeThisTicket({ projectId: thisProject._id, ticketId: id })
+      console.log("res on taking : ", result)
+      if (result.data.message = "OK") {
+        setNotTakenT(prev => prev.filter(elm => elm._id !== id))
+        setTakenT(prev => [...prev, result.data.data])
+        setError('')
+      }
+    } catch (error) {
+      setError("Error on Taking Tikcet")
+    }
+    setLoadingAColumn(false)
+    setLoadingBColumn(false)
+
   }
 
-  //
   return (
     <div className={css.projectsSection}>
       {loading && <p>Loading ...</p>}
@@ -95,49 +156,72 @@ function ProjectDetail() {
             { identifier: "people", title: "Work Flow", info: `${thisProject?.developers?.length} people are working on it` },
             { identifier: "manager", title: "Managers", info: `${(thisProject?.managers?.map(elm => elm.userName))?.join(" ")}` }
           ]} />
-        <h1>{thisProject.name}</h1>
+
         <div className={[css.workFlowSection, css.projectBoxes, css.jsGridView].join(' ')}>
 
           <div className={css.aColumn}>
             <h3>Tickets issued but not taken</h3>
-            <div className={css.ticketsContainer}>
-              {notTakenT.map(ticket => (
-                <div class={css.singleTicket} key={ticket._id}>
-                  <p>Number : {ticket.number}</p>
-                  <p>description : {ticket.description}</p>
-                  {(loggedUser._id === ticket.developer._id || ticket.managers.some(manager => manager._id === loggedUser._id)) &&
-                    <button onClick={tackingTicketHandler.bind(this, ticket._id)}>Take it</button>}
+            {!loadingAColumn &&
+              <div className={css.ticketsContainer}>
+                {notTakenT.map(ticket => (
+                  <div style={{ display: "flex" }}>
+                    <div class={css.singleTicket} key={ticket._id}>
+                      <p>Number : {ticket.number}</p>
+                      <p>description : {ticket.description}</p>
+                    </div>
+                    <button onClick={handleTakeT.bind(this, ticket._id)} style={{ maxWidth: '65px' }}>Take it</button>
+                  </div>
+                ))}
+
+
+                <div class={css.singleTicket}>
+
+                  <form onSubmit={handleNewTicket}>
+                    <label>Number : <input type="text" name="number" onChange={handleNumberChange} /></label>
+                    <label>description : <input type="text" name="description" onChange={handleDescriptionChange} /></label>
+                    <button type='submit'>create</button>
+                  </form>
                 </div>
-              ))}
-            </div>
+              </div>
+            }
+            {loadingAColumn && <p>Loading ..</p>}
           </div>
+
 
 
           <div className={css.bColumn}>
             <h3>Tikcets taken(WIP)</h3>
-            <div className={css.ticketsContainer}>
-              {takenT.map(ticket => (
-                <div class={css.singleTicket} key={ticket._id}>
-                  <p>Number : {ticket.number}</p>
-                  <p>description : {ticket.description}</p>
-                  <button onClick={doingTicketHandler.bind(this, ticket._id)}>Make it Done</button>
-                </div>
-              ))}
-            </div>
+            {!loadingBColumn &&
+              <div className={css.ticketsContainer}>
+                {takenT.map(ticket => (
+                  <div style={{ display: "flex" }}>
+                    <div class={css.singleTicket} key={ticket._id}>
+                      <p>Number : {ticket.number}</p>
+                      <p>description : {ticket.description}</p>
+                    </div>
+                    <button style={{ maxWidth: '65px' }} onClick={doingTicketHandler.bind(this, ticket._id)}>Make it Done</button>
+                  </div>
+                ))}
 
-
+              </div>
+            }
+            {loadingBColumn && <p>Loading ..</p>}
           </div>
+
           <div className={css.cColumn}>
             <h3>Tickets DONE successfully</h3>
-            <div className={css.ticketsContainer}>
-              {doneT.map(ticket => (
-                <div className={css.singleTicket} key={ticket._id}>
-                  <p>Number : {ticket.number}</p>
-                  <p>description : {ticket.description}</p>
+            {!loadingCColumn &&
+              <div className={css.ticketsContainer}>
+                {doneT.map(ticket => (
+                  <div className={css.singleTicket} key={ticket._id}>
+                    <p>Number : {ticket.number}</p>
+                    <p>description : {ticket.description}</p>
 
-                </div>
-              ))}
-            </div>
+                  </div>
+                ))}
+              </div>
+            }
+            {loadingCColumn && <p>Loading ..</p>}
           </div>
 
         </div>
